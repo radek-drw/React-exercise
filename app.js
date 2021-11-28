@@ -3,36 +3,36 @@ const data = {
       {
          id: 1,
          age: 29,
-         name: 'Marek',
+         name: 'Mark',
          gender: 'male'
       },
       {
          id: 2,
          age: 15,
-         name: 'Marta',
+         name: 'Siobhan',
          gender: 'female'
       },
       {
          id: 3,
          age: 42,
-         name: 'Apolonia',
+         name: 'Sinead',
          gender: 'female'
       },
       {
          id: 4,
          age: 23,
-         name: 'Kamil',
+         name: 'James',
          gender: 'male'
       }]
 };
 
-const FilteredList = ({ user }) => {
+const FilteredUser = ({ user }) => {
    return (
       <div>
          <h2>{user.name}</h2>
-         <p>Informacje o użytkowniku</p>
-         <p>Wiek: <strong>{user.age}</strong></p>
-         <p>Płeć: {user.gender}</p>
+         <p>Information about user</p>
+         <p>User age: <strong>{user.age}</strong></p>
+         <p>User gender: {user.gender}</p>
       </div>
    )
 }
@@ -43,37 +43,37 @@ class UsersList extends React.Component {
       select: 'all'
    }
 
-   handleFilterUsers = (option) => {
+   handleFilterBtn = (option) => {
       this.setState({
          select: option
       })
    }
 
    showUsers = () => {
-      let users = this.props.data;
+      let users = this.props.data.users;
 
       switch (this.state.select) {
          case 'all':
-            return users.map(user => <FilteredList key={user.id} user={user} />)
+            return users.map(user => <FilteredUser key={user.id} user={user} />)
          case 'female':
             users = users.filter(user => user.gender === 'female')
-            return users.map(user => <FilteredList key={user.id} user={user} />)
+            return users.map(user => <FilteredUser key={user.id} user={user} />)
          case 'male':
             users = users.filter(user => user.gender === 'male')
-            return users.map(user => <FilteredList key={user.id} user={user} />)
+            return users.map(user => <FilteredUser key={user.id} user={user} />)
       }
    }
 
    render() {
       return (
          <>
-            <button onClick={() => this.handleFilterUsers('all')}>Wszyscy</button>
-            <button onClick={() => this.handleFilterUsers('female')}>Kobiety</button>
-            <button onClick={() => this.handleFilterUsers('male')}>Mężczyźni</button>
+            <button onClick={() => this.handleFilterBtn('all')}>All</button>
+            <button onClick={() => this.handleFilterBtn('female')}>Women</button>
+            <button onClick={() => this.handleFilterBtn('male')}>Men</button>
             {this.showUsers()}
          </>
       )
    }
 }
 
-ReactDOM.render(<UsersList data={data.users} />, document.getElementById('root'));
+ReactDOM.render(<UsersList data={data} />, document.getElementById('root'));
