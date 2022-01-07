@@ -43,7 +43,7 @@ class UsersList extends React.Component {
       select: 'all'
    }
 
-   handleFilterBtn = (option) => {
+   handleFilterButton = (option) => {
       this.setState({
          select: option
       })
@@ -67,9 +67,9 @@ class UsersList extends React.Component {
    render() {
       return (
          <>
-            <button onClick={() => this.handleFilterBtn('all')}>All</button>
-            <button onClick={() => this.handleFilterBtn('female')}>Women</button>
-            <button onClick={() => this.handleFilterBtn('male')}>Men</button>
+            <button onClick={() => this.handleFilterButton('all')}>All</button>
+            <button onClick={() => this.handleFilterButton('female')}>Women</button>
+            <button onClick={() => this.handleFilterButton('male')}>Men</button>
             {this.showUsers()}
          </>
       )
